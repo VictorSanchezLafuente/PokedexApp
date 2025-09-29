@@ -54,11 +54,11 @@ start_routines() {
   yes)
     msg_info "Correcting Proxmox VE Sources"
     cat <<EOF >/etc/apt/sources.list
-deb http://deb.debian.org/debian bookworm main contrib
-deb http://deb.debian.org/debian bookworm-updates main contrib
-deb http://security.debian.org/debian-security bookworm-security main contrib
+deb http://deb.debian.org/debian trixie main contrib
+deb http://deb.debian.org/debian trixie-updates main contrib
+deb http://security.debian.org/debian-security trixie-security main contrib
 EOF
-echo 'APT::Get::Update::SourceListWarnings::NonFreeFirmware "false";' >/etc/apt/apt.conf.d/no-bookworm-firmware.conf
+echo 'APT::Get::Update::SourceListWarnings::NonFreeFirmware "false";' >/etc/apt/apt.conf.d/no-trixie-firmware.conf
     msg_ok "Corrected Proxmox VE Sources"
     ;;
   no)
@@ -73,7 +73,7 @@ echo 'APT::Get::Update::SourceListWarnings::NonFreeFirmware "false";' >/etc/apt/
   yes)
     msg_info "Disabling 'pve-enterprise' repository"
     cat <<EOF >/etc/apt/sources.list.d/pve-enterprise.list
-# deb https://enterprise.proxmox.com/debian/pve bookworm pve-enterprise
+# deb https://enterprise.proxmox.com/debian/pve trixie pve-enterprise
 EOF
     msg_ok "Disabled 'pve-enterprise' repository"
     ;;
@@ -89,7 +89,7 @@ EOF
   yes)
     msg_info "Enabling 'pve-no-subscription' repository"
     cat <<EOF >/etc/apt/sources.list.d/pve-install-repo.list
-deb http://download.proxmox.com/debian/pve bookworm pve-no-subscription
+deb http://download.proxmox.com/debian/pve trixie pve-no-subscription
 EOF
     msg_ok "Enabled 'pve-no-subscription' repository"
     ;;
@@ -105,10 +105,10 @@ EOF
     yes)
       msg_info "Correcting 'ceph package repositories'"
       cat <<EOF >/etc/apt/sources.list.d/ceph.list
-# deb https://enterprise.proxmox.com/debian/ceph-quincy bookworm enterprise
-# deb http://download.proxmox.com/debian/ceph-quincy bookworm no-subscription
-# deb https://enterprise.proxmox.com/debian/ceph-reef bookworm enterprise
-# deb http://download.proxmox.com/debian/ceph-reef bookworm no-subscription
+# deb https://enterprise.proxmox.com/debian/ceph-quincy trixie enterprise
+# deb http://download.proxmox.com/debian/ceph-quincy trixie no-subscription
+# deb https://enterprise.proxmox.com/debian/ceph-reef trixie enterprise
+# deb http://download.proxmox.com/debian/ceph-reef trixie no-subscription
 EOF
       msg_ok "Corrected 'ceph package repositories'"
       ;;
@@ -124,7 +124,7 @@ EOF
   yes)
     msg_info "Adding 'pvetest' repository and set disabled"
     cat <<EOF >/etc/apt/sources.list.d/pvetest-for-beta.list
-# deb http://download.proxmox.com/debian/pve bookworm pvetest
+# deb http://download.proxmox.com/debian/pve trixie pvetest
 EOF
     msg_ok "Added 'pvetest' repository"
     ;;
